@@ -14,10 +14,10 @@
 		
 		include('./db.php');
 		if($conn->query($sql)){
-			$error = 'Dziękujemy, twoje pytanie zostało przesłane do administraora!';  
+			$_SESSION["message"] = 'Dziękujemy, twoje pytanie zostało przesłane do administraora!';  
 		}else{
 			//echo 'Błąd bazy danych'.mysqli_error($conn);
-			$error = 'Wyspąpił błąd podczas rejestracji - użytkonik istniejw w bazie danych';  
+			$_SESSION["message"] = 'Wyspąpił błąd podczas rejestracji - użytkonik istniejw w bazie danych';  
 		}
 	}
 ?>

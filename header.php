@@ -13,17 +13,21 @@
 	header("Cache-Control: post-check=0, pre-check=0", false);
 	header("Pragma: no-cache");	
 	$conn = null;
-	$error = "";
+	
 	
 	if (session_status() == PHP_SESSION_NONE) {
 		session_start();
 	}
 	//session_destroy();
 
+
 	function replace_bad_expr($input){
 		$output = preg_replace("/[^a-zA-Z0-9_-]/","",$input); //replace bad character form GET request
 		return $output; 
 	}
+
+	$message = $_SESSION["message"];
+	
 	//user data
 	$name = $pass =  "";
 	///search results
@@ -76,7 +80,7 @@
 				//exit();
 			
 			}else{
-				$error = 'Nieprawidłowy login lub hsało, proszę spróbować ponownie';  
+				$_SESSION["message"] = 'Nieprawidłowy login lub hsało, proszę spróbować ponownie';  
 			}
 
 		}else if($logoff == "YES"){

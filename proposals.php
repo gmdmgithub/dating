@@ -32,10 +32,10 @@
                     <?php echo $row['NICK'];?>
                 </div>
                 <div class="result_edit">
-                    <a hreff="#">Edytuj</a>
+                    <a href="./editproposal.php?prop_id=<?php echo $row['ID'];?>">Edytuj</a>
                 </div>
                 <div class="result_delete">
-                    <a hreff="#">Usuń</a>
+                    <a href="#">Usuń</a>
                 </div>
             </div>
 

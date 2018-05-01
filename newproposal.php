@@ -1,29 +1,10 @@
 <?php
 	include('./header.php');
 	$page = "new_proposal";
-	$access = 'UNREGISTRED';
+	$access = 'REGISTRED';
 	if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST['new_proposal_form'] == 'true' ) {
 
-		$nick =checkPostData('nick');
-        $opis = checkPostData('opis');
-
-        $przyjaciel = "0";
-        $kolega = "0";
-        $maz_zona = "0";
-        $towarzysz = "0";
-
-        if(!empty($_POST['szukam'])) {
-            foreach($_POST['szukam'] as $check) {
-                if($check == "przyjaciela" )
-                    $przyjaciel = "1"; 
-                if($check == "kolega" )
-                    $kolega = "1";
-                if($check == "maz_zona" )
-                    $maz_zona = "1";
-                if($check == "towazysza" )
-                    $przyjaciel = "1";  
-            }
-        }
+		include('./collectProposalForm.php');
          
 		$sql = "INSERT INTO ogloszenia set nick='$nick', opis='$opis', przyjaciel='$przyjaciel', 
             kolega='$kolega', maz_zona='$maz_zona', towarzysz='$towarzysz', wiek='$userAge', USR_ID='$userId'" ;
@@ -39,15 +20,14 @@
         //echo $sql;
         include('./db.php');
 		if($conn->query($sql)){
-			$error = 'Twoje ogłoszenie trafiło do administratora, który po sprawdzeniu treści opublikuje je na portalu'; 
+            $_SESSION["message"] = 'Twoje ogłoszenie trafiło do administratora, który po sprawdzeniu treści opublikuje je na portalu';
+            header("Location: ./proposals.php"); 
 		}else{
 			//echo 'Błąd bazy danych'.mysqli_error($conn);
-			$error = 'Wyspąpił błąd podczas zapisu ogłoszenia'.mysqli_error($conn);  
+			$_SESSION["message"] = 'Wyspąpił błąd podczas zapisu ogłoszenia'.mysqli_error($conn);  
 		}
     }
 ?>
-
-</head>
 
 <body>
 	<?php include('./navi.php'); ?>

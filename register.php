@@ -21,7 +21,7 @@
 			login='$login', haslo='$haslo', wielkosc_miasta='$wielkosc_miasta', rok_urodzenia='$rok_urodzenia',opis='$opis'" ;
 		include('./db.php');
 		if($conn->query($sql)){
-			$error = 'Gratulacje! Nastąpiła poprawna rejestracja użytkownika proszę zalogować się do systemu'; 
+			$_SESSION["message"] = 'Gratulacje! Nastąpiła poprawna rejestracja użytkownika proszę zalogować się do systemu'; 
 			// $_SESSION["name"] = $login;
 			// $_SESSION["logged"] = "YES";
 			// $name = $login;
@@ -29,7 +29,7 @@
 			// exit();
 		}else{
 			//echo 'Błąd bazy danych'.mysqli_error($conn);
-			$error = 'Wyspąpił błąd podczas rejestracji - użytkonik istniejw w bazie danych';  
+			$_SESSION["message"] = 'Wyspąpił błąd podczas rejestracji - użytkonik istniejw w bazie danych';  
 		}
 	}	
 ?>

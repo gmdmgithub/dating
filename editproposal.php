@@ -1,32 +1,52 @@
 <?php
 	include('./header.php');
 	$page = "edit_proposal";
-	$access = 'UNREGISTRED';
-	if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST['edit_proposal_form'] == 'true' ) {
+    $access = 'REGISTRED';
 
-		$nick =checkPostData('nick');
-        $opis = checkPostData('opis');
+    $formData= array(
+        'przyjaciel'        =>'',
+        'kolega'            =>'',
+        'maz_zona'          =>'',
+        'towarzysz'         =>'',
+        'nick'              =>'',
+        'opis'              =>''
+    );
+    
+    if(!empty($_GET['prop_id'])){
+        $_SESSION["prop_id"] = $_GET['prop_id'];
+    }
+    $proposalId = !empty($_SESSION["prop_id"])?$_SESSION["prop_id"]:-1;
+    
 
-        $przyjaciel = "0";
-        $kolega = "0";
-        $maz_zona = "0";
-        $towarzysz = "0";
+    if ($_SERVER["REQUEST_METHOD"] == "GET" && $proposalId > 0){
+        $sql = "SELECT * FROM OGLOSZENIA WHERE USR_ID='$userId' AND ID='$proposalId' ";
+        include('./db.php');
+        $result = $conn->query($sql);
+		
+		if ($result->num_rows) {
+            $row = $result->fetch_assoc();
 
-        if(!empty($_POST['szukam'])) {
-            foreach($_POST['szukam'] as $check) {
-                if($check == "przyjaciela" )
-                    $przyjaciel = "1"; 
-                if($check == "kolega" )
-                    $kolega = "1";
-                if($check == "maz_zona" )
-                    $maz_zona = "1";
-                if($check == "towazysza" )
-                    $przyjaciel = "1";  
-            }
+            $formData['nick']= trim($row['NICK']);
+            $formData['opis']= trim($row['OPIS']);
+            $formData['przyjaciel']= $row['PRZYJACIEL']==1?'checked':'';
+            $formData['kolega']= $row['KOLEGA']=='1'?'checked':'';
+            $formData['maz_zona']= $row['MAZ_ZONA']=='1'?'checked':'';
+            $formData['towarzysz']= $row['TOWARZYSZ']=='1'?'checked':'';
+        }else{
+            $_SESSION["message"] = "Wykryto próbę naruszenia zasad bezpieczeństwa, 
+                      incydent zostanie zgłoszony administratowori wraz z IP i innymi danymi niezbędnymi do twojej identyfikacji!";
         }
-         
-		$sql = "INSERT INTO ogloszenia set nick='$nick', opis='$opis', przyjaciel='$przyjaciel', 
-            kolega='$kolega', maz_zona='$maz_zona', towarzysz='$towarzysz', wiek='$userAge', USR_ID='$userId'" ;
+    }
+
+
+	if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST['edit_proposal_form'] == 'true' ) {
+        
+        //data from the form
+        include('./collectProposalForm.php'); 
+        
+        $sql = "UPDATE ogloszenia set nick='$nick', opis='$opis', przyjaciel='$przyjaciel', 
+            kolega='$kolega', maz_zona='$maz_zona', towarzysz='$towarzysz', wiek='$userAge', 
+            status = 'N'";
         
         $check = getimagesize($_FILES["image_upload"]["tmp_name"]);
         if($check !== false){
@@ -36,18 +56,20 @@
             $image =addslashes(file_get_contents($_FILES['image_upload']['tmp_name']));
             $sql .=", ZDJECIE='$image', ZDJECIE_WIELKOSC='$size', ZDJECIE_NAZWA='$nazwa' ";
         }
+        $sql .=" WHERE ID = '$proposalId' AND USR_ID='$userId' ";
         //echo $sql;
         include('./db.php');
 		if($conn->query($sql)){
-			$error = 'Twoje ogłoszenie trafiło do administratora, który po sprawdzeniu treści opublikuje je na portalu'; 
+            $_SESSION["message"] = 'Twoje ogłoszenie trafiło do administratora, który po sprawdzeniu treści opublikuje je na portalu'; 
+            header("Location: ./proposals.php");
+            //exit;
+            
 		}else{
 			//echo 'Błąd bazy danych'.mysqli_error($conn);
-			$error = 'Wyspąpił błąd podczas zapisu ogłoszenia'.mysqli_error($conn);  
+			$_SESSION["message"] = 'Wyspąpił błąd podczas zapisu ogłoszenia'.mysqli_error($conn);  
 		}
     }
 ?>
-
-</head>
 
 <body>
 	<?php include('./navi.php'); ?>
