@@ -71,7 +71,7 @@
                      echo "Your GD version is:".$version;?>
 		</div>
 
-		<div class="regulamin">
+		<div class="main_content">
 			<h2>Pytanie od Pana Krzystofa z Kielc:</h2>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 				Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute

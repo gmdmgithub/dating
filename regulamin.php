@@ -1,7 +1,4 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-<?php
+﻿<?php
 	include('./header.php');
 	$page = "regulamin";
 	$access = 'ALL';

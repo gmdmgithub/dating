@@ -1,7 +1,4 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-<?php
+﻿<?php
 	include('./header.php');
 	$page = "search";
 	$access = 'REGISTRED';

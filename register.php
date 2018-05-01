@@ -1,8 +1,4 @@
-﻿<!DOCTYPE html>
-<html>
-
-<head>
-	<?php
+﻿<?php
 	include('./header.php');
 	$page = "register";
 	$access = 'UNREGISTRED';

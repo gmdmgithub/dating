@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <?php
+<?php
 	include('./header.php');
 	$page = "proposals";
 	$access = 'REGISTRED';
@@ -21,7 +17,7 @@
     </div>
     <br>
 
-    <div class="wyniki">
+    <div class="results_list">
         <?php
 		$sql = "SELECT * FROM OGLOSZENIA WHERE USR_ID='$userId' ";
 		
