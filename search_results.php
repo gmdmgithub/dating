@@ -22,7 +22,7 @@
   
 </div>
 
-<div class="wyniki">
+<div class="results_list">
 	<?php
 		$sql = "SELECT 	KOLEGA,MAZ_ZONA, wielkosc_miasta,NICK,ogloszenia.OPIS,PLEC,PRZYJACIEL,TOWARZYSZ,".
 						"ROK_URODZENIA,ZDJECIE,ZDJECIE_WIELKOSC FROM OGLOSZENIA, uzytkownicy ".

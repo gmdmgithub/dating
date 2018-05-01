@@ -17,10 +17,7 @@
 ?>
     <div class="title">
         <h1>Lista twoich ogłoszeń</h1>
-        <div class="newproposal">
-            <p class="pproposal">Chcesz dodać nowe ogłoszenie?</p>
-            <a href="./newproposal.php">Nowe ogłoszenie</a>
-        </div>
+        
     </div>
     <br>
 
@@ -84,7 +81,7 @@
                     </div>
             </div>
                     <?php if($row['ZDJECIE_WIELKOSC'] >0){?>
-                        <div class="res_row">
+                        <div class="res_row last_row">
                             <div class="result_1">Zdjecie: </div>
                             <div class="result_2">
                                 <img src="data:image/jpeg;base64,<?php echo base64_encode($row['ZDJECIE'])?>" width="300" />
@@ -100,13 +97,19 @@
 		}
 	 ?>
     </div>
+    <div class="title">
+        <div class="newproposal">
+            <p class="pproposal">Chcesz dodać nowe ogłoszenie?</p>
+            <a href="./newproposal.php">Nowe ogłoszenie</a>
+        </div>
+    </div>
 
     <?php }else{ ?>
     <div class="title">
         <h2>Opcja jest dostępna tylko dla zalogowanych użytkowników</h2>
     </div>
     <?php } ?>
-
+    
     <div class="footer">
         <?php include("./footer.php");?>
     </div>

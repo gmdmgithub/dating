@@ -10,13 +10,13 @@
 		<p class="ask_label">Kogo poszukujesz?
 			<span class="asterisk">*</span>
 		</p>
-		<label class="four">
+		<label class="seek">
 			<input type="checkbox" name="szukam[]" value="przyjaciela" class="checkbox" /> Przyjaciela</label>
-		<label class="four">
+		<label class="seek">
 			<input type="checkbox" name="szukam[]" value="kolega" class="checkbox" /> Kolegę</label>
-		<label class="four">
+		<label class="seek">
 			<input type="checkbox" name="szukam[]" value="maz_zona" class="checkbox" /> Męża/Żony</label>
-		<label class="four">
+		<label class="seek">
 			<input type="checkbox" name="szukam[]" value="towazysza" class="checkbox" /> Towarzysza</label>
 	</div>
 
