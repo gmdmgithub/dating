@@ -7,7 +7,7 @@
 		include('./collectProposalForm.php');
          
 		$sql = "INSERT INTO ogloszenia set nick='$nick', opis='$opis', przyjaciel='$przyjaciel', 
-            kolega='$kolega', maz_zona='$maz_zona', towarzysz='$towarzysz', wiek='$userAge', USR_ID='$userId'" ;
+            kolega='$kolega', maz_zona='$maz_zona', towarzysz='$towarzysz', wiek='$userAge', USR_ID='$userId', temat='$temat' " ;
         
         $check = getimagesize($_FILES["image_upload"]["tmp_name"]);
         if($check !== false){

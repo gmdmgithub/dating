@@ -9,7 +9,8 @@
         'maz_zona'          =>'',
         'towarzysz'         =>'',
         'nick'              =>'',
-        'opis'              =>''
+        'opis'              =>'',
+        'temat'             =>''
     );
     
     if(!empty($_GET['prop_id'])){
@@ -28,6 +29,7 @@
 
             $formData['nick']= trim($row['NICK']);
             $formData['opis']= trim($row['OPIS']);
+            $formData['temat']= trim($row['TEMAT']);
             $formData['przyjaciel']= $row['PRZYJACIEL']==1?'checked':'';
             $formData['kolega']= $row['KOLEGA']=='1'?'checked':'';
             $formData['maz_zona']= $row['MAZ_ZONA']=='1'?'checked':'';
@@ -46,14 +48,14 @@
         
         $sql = "UPDATE ogloszenia set nick='$nick', opis='$opis', przyjaciel='$przyjaciel', 
             kolega='$kolega', maz_zona='$maz_zona', towarzysz='$towarzysz', wiek='$userAge', 
-            status = 'N'";
+            status = 'N', temat='$temat' ";
         
         $check = getimagesize($_FILES["image_upload"]["tmp_name"]);
         if($check !== false){
             //echo 'Adding image...';
             $size = $_FILES['image_upload']['size'];
             $nazwa = addslashes($_FILES['image_upload']['name']);
-            $image =addslashes(file_get_contents($_FILES['image_upload']['tmp_name']));
+            $image = addslashes(file_get_contents($_FILES['image_upload']['tmp_name']));
             $sql .=", ZDJECIE='$image', ZDJECIE_WIELKOSC='$size', ZDJECIE_NAZWA='$nazwa' ";
         }
         $sql .=" WHERE ID = '$proposalId' AND USR_ID='$userId' ";

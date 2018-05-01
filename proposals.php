@@ -19,7 +19,7 @@
 
     <div class="results_list">
         <?php
-		$sql = "SELECT * FROM OGLOSZENIA WHERE USR_ID='$userId' ";
+		$sql = "SELECT * FROM OGLOSZENIA WHERE USR_ID='$userId' AND STATUS <>'D'";
 		
 		$result = $conn->query($sql);
 		
@@ -35,7 +35,14 @@
                     <a href="./editproposal.php?prop_id=<?php echo $row['ID'];?>">Edytuj</a>
                 </div>
                 <div class="result_delete">
-                    <a href="#">Usuń</a>
+                    <a href="./deleteproposal.php?prop_id=<?php echo $row['ID'];?>" onclick="return confirm('Jetsteś pewnien, że chcesz usunąć ogłoszenie?')">Usuń</a>
+                </div>
+            </div>
+            
+            <div class="res_row">
+                <div class="result_1">Temat: </div>
+                <div class="result_2">
+                    <?php echo $row['TEMAT']?>
                 </div>
             </div>
 

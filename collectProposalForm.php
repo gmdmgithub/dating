@@ -1,6 +1,7 @@
 <?php
 $nick =checkPostData('nick');
 $opis = checkPostData('opis');
+$temat = checkPostData('temat');
 
 $przyjaciel = "0";
 $kolega = "0";

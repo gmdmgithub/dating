@@ -7,6 +7,12 @@
 		<input type="text" id="nick" name="nick" placeholder="Wpisz nick.." value="<?php echo $formData['nick'];?>">
 	</div>
 	<div class="register_row">
+		<label for="temat">Jaki będzie temat ogłoszenia?
+			<span class="asterisk">*</span>
+		</label>
+		<input type="text" id="temat" name="temat" placeholder="Wpisz temat.." value="<?php echo $formData['temat'];?>">
+	</div>
+	<div class="register_row">
 		<p class="ask_label">Kogo poszukujesz?
 			<span class="asterisk">*</span>
 		</p>
