@@ -35,7 +35,7 @@
 	</div>
 
 	<div class="register_row">
-		<input type="hidden" name="new_proposal_form" value="true">
+		<input type="hidden" name="<?php echo $page;?>_form" value="true">
 		<input type="submit" value="Zapisz">
 	</div>
 </fieldset>

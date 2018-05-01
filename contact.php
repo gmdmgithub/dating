@@ -1,6 +1,4 @@
-﻿<!DOCTYPE html>
-<html>
-<?php
+﻿<?php
 	include('./header.php');
 	$page = "contact";
 	$access = 'REGISTRED';

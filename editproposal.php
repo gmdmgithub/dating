@@ -1,8 +1,8 @@
 <?php
 	include('./header.php');
-	$page = "new_proposal";
+	$page = "edit_proposal";
 	$access = 'UNREGISTRED';
-	if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST['new_proposal_form'] == 'true' ) {
+	if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST['edit_proposal_form'] == 'true' ) {
 
 		$nick =checkPostData('nick');
         $opis = checkPostData('opis');
@@ -53,16 +53,15 @@
 	<?php include('./navi.php'); ?>
 
 <div class="title">
-  <h1>Dodajesz właśnie nowe ogłoszenie</h1>
+  <h1>Edycja ogłoszenia</h1>
   <h3>Pola oznaczone <span class="asterisk">*</span> są obowiązkowe </h3>
 </div>
 
 <?php if(strlen($name) > 0){?>
 
 <div class="register">
-
 	<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data" onsubmit="return checkProposal(this)"> 
-    <?php include('./proposalForm.php'); ?>
+        <?php include('./proposalForm.php'); ?>
 	</form>
 </div>
 
