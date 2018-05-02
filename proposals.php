@@ -91,8 +91,7 @@
                             </div>
                     </div>
                    
-                    <?php }
-				$true = false; ?>
+                    <?php }?>
              <div class="end_row"></div>
             <?php }
 		} else {

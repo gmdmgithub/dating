@@ -87,6 +87,8 @@
 			$_SESSION["logged"] = "NO";
 			$_SESSION["name"] = "";
 			$_POST["logoff"] = "";
+			header("Location: ./index.php");
+			exit; 
 		}
 	}	
 	$name = $_SESSION["name"];

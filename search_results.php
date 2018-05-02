@@ -21,7 +21,7 @@
 
 <div class="results_list">
 	<?php
-		$sql = "SELECT 	KOLEGA,MAZ_ZONA, wielkosc_miasta,NICK,ogloszenia.OPIS,PLEC,PRZYJACIEL,TOWARZYSZ,".
+		$sql = "SELECT 	ogloszenia.ID, KOLEGA,MAZ_ZONA, wielkosc_miasta,NICK,ogloszenia.OPIS,TEMAT, PLEC,PRZYJACIEL,TOWARZYSZ,".
 						"ROK_URODZENIA,ZDJECIE,ZDJECIE_WIELKOSC FROM OGLOSZENIA, uzytkownicy ".
 						"WHERE ogloszenia.USR_ID = uzytkownicy.ID AND uzytkownicy.ID !=". $userId;
 		
@@ -57,23 +57,50 @@
 		
 		$result = $conn->query($sql);
 		
-		if ($result->num_rows > 0) { 
-			// output data of each row
-			while($row = $result->fetch_assoc()) {
-				echo "<h3 style=\"clear: both;padding-top:20px;\">". $row['NICK']. "</h3>";
+		if ($result->num_rows > 0) {  
+			while($row = $result->fetch_assoc()) { ?>
+				<div class="results_box">
+					
+				<h3><?php echo $row['NICK'];?></h3>
+					<div class="res_row">
+						<div class="result_1">Temat: </div>
+						<div class="result_2"><?php echo $row['TEMAT']?></div>
+					</div>
+
+					<div class="res_row">
+						<div class="result_1">Opis: </div>
+						<div class="result_2"><?php echo $row['OPIS']?></div>
+					</div>
+					
+					<div class="res_row">
+						<div class="result_1">Urodzony: </div>
+						<div class="result_2"><?php echo $row['ROK_URODZENIA']?></div>
+					</div>
+					
+					<div class="res_row">
+						<div class="result_1">Prośba o spotkanie: </div>
+						<div class="result_delete_meet_me">
+							<a href="./delete_meeting.php?prop_id=<?php echo $row['ID'];?>" onclick="return confirm('Jetsteś pewnien, że chcesz usunąć ogłoszenie?')">Usuń</a>
+						</div>
+						<div class="result_meet_me">
+							<a href="./add_meeting.php?prop_id=<?php echo $row['ID'];?>">Spotkanie</a>
+						</div>
+						
+					</div>
+
+					<?php if($row['ZDJECIE_WIELKOSC'] >0){ ?>
+						<div class="res_row last_row">
+								<div class="result_1">Zdjecie: </div>
+								<div class="result_2">
+									<img src="data:image/jpeg;base64,<?php echo base64_encode($row['ZDJECIE'])?>" width="300" />
+								</div>
+						</div>
 				
-				echo "<div class=\"result_1\">Opis: </div>";
-				echo "<div class=\"result_2\">". $row['OPIS']. "</div>";
-				
-				echo "<div class=\"result_1\">Urodzony: </div>";
-				echo "<div class=\"result_2\">". $row['ROK_URODZENIA']. "</div>";
-				if($row['ZDJECIE_WIELKOSC'] >0){
-                    echo "<div class=\"result_1\">Zdjecie: </div>";
-                    echo "<div class=\"result_2\"><img src=\"data:image/jpeg;base64,".base64_encode($row['ZDJECIE'])."\" width=\"300\" /> </div>";
-                }
-				
-				$true = false;
-			}
+				<?php } ?>
+				<div class="end_row"></div>	
+				</div> 
+				<!-- end of resultsbox -->
+			<?php }
 		} else {
 			echo "<h2> Wprowadzone przez Ciebie kryteria nie zwróciły żadnych rezultatów</h2>";
 		}
