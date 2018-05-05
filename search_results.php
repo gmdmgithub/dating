@@ -80,10 +80,10 @@
 					<div class="res_row">
 						<div class="result_1">Prośba o spotkanie: </div>
 						<div class="result_delete_meet_me">
-							<a href="./delete_meeting.php?prop_id=<?php echo $row['ID'];?>" onclick="return confirm('Jetsteś pewnien, że chcesz usunąć ogłoszenie?')">Usuń</a>
+							<a href="./delete_meeting.php?ogl_id=<?php echo $row['ID'];?>" onclick="return confirm('Jetsteś pewnien, że chcesz usunąć ogłoszenie?')">Usuń</a>
 						</div>
 						<div class="result_meet_me">
-							<a href="./add_meeting.php?prop_id=<?php echo $row['ID'];?>">Spotkanie</a>
+							<a href="./newMeeting.php?ogl_id=<?php echo $row['ID'];?>">Spotkanie</a>
 						</div>
 						
 					</div>

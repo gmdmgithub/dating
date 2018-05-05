@@ -24,7 +24,8 @@
             header("Location: ./proposals.php"); 
 		}else{
 			//echo 'Błąd bazy danych'.mysqli_error($conn);
-			$_SESSION["message"] = 'Wyspąpił błąd podczas zapisu ogłoszenia'.mysqli_error($conn);  
+            $_SESSION["message"] = 'Wyspąpił błąd podczas zapisu ogłoszenia'.mysqli_error($conn);
+            header("Location: ./proposals.php");
 		}
     }
 ?>
