@@ -324,7 +324,11 @@ fieldset {
   }
 
   /* results lists - couple of pages */
-.results_box{
+ .res_row{
+	width: 100%;
+	clear: both;
+}
+  .results_box{
 	margin-bottom: 15px;
 }
 .results_list {
@@ -401,7 +405,13 @@ fieldset {
 	color:white;
 	cursor: pointer;
 }
-
+.invit{
+	margin-left: 10px;
+	font-style: italic;
+}
+.invit .result_1{
+	min-width: 150px;;
+}
 
 .result_meet_me, .result_delete_meet_me{
 	width: 200px;
@@ -424,11 +434,6 @@ fieldset {
 	text-decoration: none;
 	color: blanchedalmond;
 }
-
-.res_row{
-	width: 100%;
-	clear: both;
-}
 .last_row{
 	margin-top: 35px;
 }
@@ -440,9 +445,6 @@ fieldset {
 	border-bottom: 2px solid gray;
 	margin-bottom: 10px;
 }
-.gd_info{
-	display: none;
-}
 .delete_section{
 	display: flex;
 	margin: 0 auto;
@@ -453,4 +455,9 @@ fieldset {
 .skasuj{
 	min-width: 80px;
 	align-content: center;
+}
+
+
+.gd_info{
+	display: none;
 }

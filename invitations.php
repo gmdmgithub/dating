@@ -24,7 +24,7 @@
     ?>
 
 <div class="title">
-  <h1>Poniżej prezentujemy listę ogłoszeń, gdzie wysłałeś zaporoszenia</h1>
+  <h1>Poniżej prezentujemy listę ogłoszeń, gdzie wysłałeś prośby o spotkanie</h1>
   <br>
   <?php //echo "Dane płeć: ".$gender_search; //mozna wypisać wszystkie parametry wyszukiwania
   ?> 
@@ -49,6 +49,9 @@
 		ROK_URODZENIA,
 		ZDJECIE,
 		ZDJECIE_WIELKOSC,
+		WIADOMOSC,
+		DATA_UTWORZENIA,
+		prosba_kontaktu.STATUS KNT_STATUS,
 		wielkosc_miasta,
         prosba_kontaktu.id KNT_ID
 	FROM
@@ -66,7 +69,13 @@
 		$result = $conn->query($qSql);
 		
 		if ($result->num_rows > 0) {  
-			while($row = $result->fetch_assoc()) { ?>
+			while($row = $result->fetch_assoc()) { 
+				$status = "Nowy";
+				if($row['KNT_STATUS'] == 'A')
+					$status = "Zaakceptowany";
+				if($row['KNT_STATUS'] == 'O')
+					$status = "Odrzucony";
+				?>
 				<div class="results_box">
 					
 				<h3><?php echo $row['NICK'];?></h3>
@@ -84,20 +93,24 @@
 						<div class="result_1">Urodzony: </div>
 						<div class="result_2"><?php echo $row['ROK_URODZENIA']?></div>
 					</div>
-					
-					<div class="res_row">
-			<div class="result_1"> <?php if($row['KNT_ID'] >0) { ?> Prośba o spotkanie została przez Ciebie już wysłana <?php } else{ ?> Poproś o spotaknie <?php } ?></div>
-						<?php if($row['KNT_ID'] >0){ ?>
+					<div class="res_row invit">
+						<div class="result_1">Data wysłania: </div>
+						<div class="result_2"><?php echo $row['DATA_UTWORZENIA']?></div>
+					</div>
+					<div class="res_row invit">
+						<div class="result_1">Wiadomość: </div>
+						<div class="result_2"><?php echo $row['WIADOMOSC']?></div>
+					</div>
+					<div class="res_row invit">
+						<div class="result_1">Status: </div>
+						<div class="result_2"><?php echo $status ?></div>
+					</div>
+					<div class="res_row invit">
+					<div class="result_1"></div>
 							<div class="result_delete_meet_me">
 							<a href="./invitations.php?knt_id=<?php echo $row['KNT_ID'];?>" onclick="return confirm('Jetsteś pewnien, że chcesz usunąć ogłoszenie?')">Usuń spotkanie</a>
 							</div>
-						<?php }else { ?>
-						<div class="result_meet_me">
-							<a href="./newMeeting.php?ogl_id=<?php echo $row['OGL_ID'];?>">Umów spotkanie</a>
-						</div>
-						<?php } ?>
 					</div>
-
 					<?php if($row['ZDJECIE_WIELKOSC'] >0){ ?>
 						<div class="res_row last_row">
 								<div class="result_1">Zdjecie: </div>
@@ -112,7 +125,7 @@
 				<!-- end of resultsbox -->
 			<?php }
 		} else {
-			echo "<h2> Wprowadzone przez Ciebie kryteria nie zwróciły żadnych rezultatów</h2>";
+			echo "<h2>Wygląda na to, że nikomu nie wysłałeś jeszcze zaporoszenia do spotkania/h2>";
 		}
 	 ?>
 </div>
