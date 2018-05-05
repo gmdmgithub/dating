@@ -1,6 +1,6 @@
-﻿<?php
+<?php
 	include('./header.php');
-	$page = "search";
+	$page = "invitations";
 	$access = 'REGISTRED';
 ?>
 </head>
@@ -15,16 +15,16 @@
 		if ($conn->query($sql) != TRUE) {
             $_SESSION["message"] = "Wykryto próbę naruszenia zasad bezpieczeństwa, 
                       incydent zostanie zgłoszony administratowori wraz z IP i innymi danymi niezbędnymi do twojej identyfikacji!";        
-            header("Location: ./search_results.php");
+            header("Location: ./invitations.php");
         }else {
 			$_SESSION["message"] = " Spotkanie zostało usunięte :(";
-			header("Location: ./search_results.php");
+			header("Location: ./invitations.php");
 		}
     }
     ?>
 
 <div class="title">
-  <h1>Poniżej prezentujemy rezultaty wyszukiwania</h1>
+  <h1>Poniżej prezentujemy listę ogłoszeń, gdzie wysłałeś zaporoszenia</h1>
   <br>
   <?php //echo "Dane płeć: ".$gender_search; //mozna wypisać wszystkie parametry wyszukiwania
   ?> 
@@ -50,48 +50,15 @@
 		ZDJECIE,
 		ZDJECIE_WIELKOSC,
 		wielkosc_miasta,
-		(
-		SELECT
-			prosba_kontaktu.id
-		FROM
-			prosba_kontaktu
-		WHERE
-			prosba_kontaktu.USR_ID = '$userId' AND prosba_kontaktu.OGL_ID = ogloszenia.id
-	) KNT_ID
+        prosba_kontaktu.id KNT_ID
 	FROM
 		ogloszenia,
-		uzytkownicy
+		uzytkownicy,
+        prosba_kontaktu
 	WHERE
-		ogloszenia.USR_ID = uzytkownicy.ID AND ogloszenia.USR_ID !='$userId' ";
-
-		//$gender_search $purpose $year_range $live 
-		///*
-		if($gender_search != "" || $year_range != "" || $purpose != "" || $live != ""){
-			$sql .= " AND ";
-			$end = false;
-			if($gender_search != ""){
-				$sql .=  " PLEC = \"".$gender_search."\" ";
-				$end = true;
-			}
-			if($year_range != ""){
-
-				if($end) {
-					$sql .= " AND ";
-
-				}
-				$sql .= " (ROK_URODZENIA ". $year_range . " ";
-				$end = true;
-			}
-			if($photos == "YES"){
-				if($end) {
-					$sql .= " AND ";
-
-				}
-				$sql .= " ZDJECIE_WIELKOSC > 0 ";
-				$end = true;
-			}
-		}
-		//*/
+        prosba_kontaktu.USR_ID = '$userId' AND prosba_kontaktu.OGL_ID = ogloszenia.id 
+        AND ogloszenia.USR_ID = uzytkownicy.ID AND ogloszenia.USR_ID !='$userId' ";
+        //*/
 		$qSql =$sql." ORDER BY 1";
 		//do poprawy sql - unia nie jest dobrym pomysłem
 		//echo $qSql;
@@ -122,7 +89,7 @@
 			<div class="result_1"> <?php if($row['KNT_ID'] >0) { ?> Prośba o spotkanie została przez Ciebie już wysłana <?php } else{ ?> Poproś o spotaknie <?php } ?></div>
 						<?php if($row['KNT_ID'] >0){ ?>
 							<div class="result_delete_meet_me">
-							<a href="./search_results.php?knt_id=<?php echo $row['KNT_ID'];?>" onclick="return confirm('Jetsteś pewnien, że chcesz usunąć ogłoszenie?')">Usuń spotkanie</a>
+							<a href="./invitations.php?knt_id=<?php echo $row['KNT_ID'];?>" onclick="return confirm('Jetsteś pewnien, że chcesz usunąć ogłoszenie?')">Usuń spotkanie</a>
 							</div>
 						<?php }else { ?>
 						<div class="result_meet_me">

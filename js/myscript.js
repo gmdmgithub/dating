@@ -57,3 +57,10 @@ function checkProposal(form) {
   }
   return true;
 }
+function checkMeeting(form){
+  if(form.content.value.trim().length  == 0){
+    alert("Proszę wypełnić pola na formularzu oznaczone gwiazdką!");
+    return false;
+  }
+  return true;
+}

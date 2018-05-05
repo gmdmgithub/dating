@@ -31,7 +31,13 @@
 	//user data
 	$name = $pass =  "";
 	///search results
-	$gender = $gender_search = $purpose = $year_range = $live = $photos = "";
+	$gender = $_SESSION["gender"];	
+	$gender_search = $_SESSION["gender_search"];
+	$purpose = $_SESSION["purpose"];
+	$year_range = $_SESSION["year_range"];
+	$live = $_SESSION["live"];
+	$photos = $_SESSION["photos"];
+	
 	$userId =  $_SESSION["userId"];
 	$userAge =  $_SESSION["userAge"];
 	
@@ -54,6 +60,7 @@
 		$live = checkPostData('live');
 		$photos = checkPostData('photos');
 		$logoff = checkPostData('logoff');
+
 		
 		if(strlen($name) >0 && strlen($pass) >0){
 			
@@ -80,7 +87,8 @@
 				//exit();
 			
 			}else{
-				$_SESSION["message"] = 'Nieprawidłowy login lub hsało, proszę spróbować ponownie';  
+				$_SESSION["message"] = 'Nieprawidłowy login lub hsało, proszę spróbować ponownie';
+				header("Location: ./index.php");
 			}
 
 		}else if($logoff == "YES"){
@@ -95,6 +103,14 @@
 	
 
 	function checkPostData($postdata){
-		return array_key_exists($postdata, $_POST) ? trim($_POST[$postdata]) : "";
+		
+		if(array_key_exists($postdata, $_POST)){
+			if( strlen(trim($_POST[$postdata])) == 0)
+				return "";
+			$_SESSION[$postdata] = trim($_POST[$postdata]);
+			//echo "session: ".$_SESSION[$postdata]." co to jest? <br>";
+			return trim($_POST[$postdata]); 
+		}
+		return array_key_exists($postdata, $_SESSION) ? trim($_SESSION[$postdata]) : "";
 	}
 ?>

@@ -11,7 +11,7 @@
     $nick = '';
 
     if ($_SERVER["REQUEST_METHOD"] == "GET" && $ogloszenieId > 0){
-        $sql = "SELECT * FROM OGLOSZENIA WHERE USR_ID!='$userId' AND ID='$ogloszenieId' AND STATUS = 'A' ";
+        $sql = "SELECT * FROM OGLOSZENIA WHERE USR_ID !='$userId' AND ID='$ogloszenieId' "; //dodać jeszcze status ogłoszenia
         include('./db.php');
         $result = $conn->query($sql);
 		
@@ -19,6 +19,7 @@
             $row = $result->fetch_assoc();
             $nick= trim($row['NICK']);
         }else{
+            //echo $sql;
             $_SESSION["message"] = "Wykryto próbę naruszenia zasad bezpieczeństwa, 
                       incydent zostanie zgłoszony administratowori wraz z IP i innymi danymi niezbędnymi do twojej identyfikacji!";
             
@@ -35,14 +36,14 @@
 		
 		//echo 'Request posted';
 		$sql = "INSERT INTO prosba_kontaktu set WIADOMOSC='$wiadomosc', USR_ID ='$userId', OGL_ID = '$ogloszenieId' " ;
-		
+		echo $sql;
 		include('./db.php');
 		if($conn->query($sql)){
             $_SESSION["message"] = 'Dziękujemy, twoja prośba została przesłana do użytkownika, czekaj na kontakt!';
             header("Location: ./search_results.php"); 
 		}else{
 			//echo 'Błąd bazy danych'.mysqli_error($conn);
-            $_SESSION["message"] = 'Wyspąpił błąd podczas planowania spotkania';  
+            $_SESSION["message"] = 'Wyspąpił błąd podczas planowania spotkania '.mysqli_error($conn).$sql;  
             header("Location: ./search_results.php"); 
 		}
 	}
@@ -62,7 +63,7 @@
 
 		<div class="register">
 			<!-- dodac obsluge wpisania do bazy danych -->
-			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" onsubmit="return checkProposal(this)">
+			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" onsubmit="return checkMeeting(this)">
 				<fieldset>
 					<div class="register_row">
 						<label for="content">Napisz proszę wiadomość o spotkaniu<span class="asterisk">*</span></label>

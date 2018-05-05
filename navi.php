@@ -7,12 +7,6 @@
 						'access'	=>	'ALL'
 					),
 					array(
-						'name'		=> 'regulamin',
-						'site'		=> 'regulamin.php',
-						'title'		=>	'Regulamin',
-						'access'	=>	'ALL'
-					),
-					array(
 						'name'		=> 'register',
 						'site'		=> 'register.php',
 						'title'		=>	'Rejestracja',
@@ -25,12 +19,6 @@
 						'access'	=>	'REGISTRED'
 					),
 					array(
-						'name'		=> 'about',
-						'site'		=> 'about.php',
-						'title'		=>	'O nas',
-						'access'	=>	'ALL'
-					),
-					array(
 						'name'		=> 'proposals',
 						'site'		=> 'proposals.php',
 						'title'		=>	'Ogłoszenia',
@@ -41,6 +29,24 @@
 						'site'		=> 'questions.php',
 						'title'		=>	'Pytania',
 						'access'	=>	'ADMIN'
+					),
+					array(
+						'name'		=> 'invitations',
+						'site'		=> 'invitations.php',
+						'title'		=>	'Zaproszenia',
+						'access'	=>	'REGISTRED'
+					),//jako ostatnie zawsze te dwie
+					array(
+						'name'		=> 'regulamin',
+						'site'		=> 'regulamin.php',
+						'title'		=>	'Regulamin',
+						'access'	=>	'ALL'
+					),
+					array(
+						'name'		=> 'about',
+						'site'		=> 'about.php',
+						'title'		=>	'O nas',
+						'access'	=>	'ALL'
 					)
 					);
 
