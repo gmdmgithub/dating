@@ -24,12 +24,12 @@
 						'title'		=>	'Ogłoszenia',
 						'access'	=>	'REGISTRED'
 					),
-					array(
-						'name'		=> 'questions',
-						'site'		=> 'questions.php',
-						'title'		=>	'Pytania',
-						'access'	=>	'ADMIN'
-					),
+					// array(
+					// 	'name'		=> 'questions',
+					// 	'site'		=> 'questions.php',
+					// 	'title'		=>	'Pytania',
+					// 	'access'	=>	'ADMIN'
+					// ),
 					array(
 						'name'		=> 'invitations',
 						'site'		=> 'invitations.php',
@@ -47,6 +47,12 @@
 						'site'		=> 'about.php',
 						'title'		=>	'O nas',
 						'access'	=>	'ALL'
+					), /// admin
+					array(
+						'name'		=> 'admin',
+						'site'		=>	'admin-panel.php',
+						'title'		=> 'Admin Panel',
+						'access'	=> 'ADMIN'
 					)
 					);
 
@@ -62,17 +68,20 @@
 		<div class="menu">
 			<?php
 	foreach($naviItems as $item){
+		//echo $item['title'];
 		if( ($item['access'] == 'REGISTRED' &&  strlen($name) > 0) ||
-					($item['access'] == 'UNREGISTRED' &&  strlen($name) == 0) || $item['access'] == 'ALL'){
+					($item['access'] == 'UNREGISTRED' &&  strlen($name) == 0) || 
+					$item['access'] == 'ALL' ||
+					($item['access'] == 'ADMIN' && $admin == 'ADMIN') ) {
 			if($item['name'] == $page){?>
-					<a class="active" href="#">
-						<?php echo $item['title'];?>
-					</a>
-				<?php }else{ ?>
-					<a href="./<?php echo $item['site'];?>">
-						<?php echo $item['title'];?>
-					</a>
-				<?php
+				<a class="active" href="#">
+					<?php echo $item['title'];?>
+				</a>
+			<?php }else{ ?>
+				<a href="./<?php echo $item['site'];?>">
+					<?php echo $item['title'];?>
+				</a>
+			<?php
 			}
 		}
 	};

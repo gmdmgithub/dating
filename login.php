@@ -19,6 +19,7 @@
 			<form name="logoffForm" method="post" autocomplete="off" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 				<img src="img/user.png" title="Cześć <?php echo $name?>">
 					<input type="hidden" name="logoff" value="YES"> 
+					<input type="hidden" name="pass" value="">
 					<img src="img/exit.png" title="Wyloguj" onclick="submit()"style="cursor:pointer;border:none;width:20px;height:20px;">
 				</form>
 		</div>

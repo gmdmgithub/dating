@@ -2,6 +2,7 @@
 	include('./header.php');
 	$page = "register";
 	$access = 'UNREGISTRED';
+	error_log("metoda serwera: ".$_SERVER["REQUEST_METHOD"]);
 	if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST['registration_form'] == 'true' ) {
 
 		$imie =checkPostData('imie');
@@ -16,21 +17,25 @@
 		$rok_urodzenia = checkPostData('rok_urodzenia');
 		$opis = checkPostData('opis');
 		
-		//echo 'Registration posted';
+		echo 'Registration posted';
 		$sql = "INSERT INTO uzytkownicy set imie='$imie', nazwisko='$nazwisko', email ='$email', plec='$plsec',
 			login='$login', haslo='$haslo', wielkosc_miasta='$wielkosc_miasta', rok_urodzenia='$rok_urodzenia',opis='$opis'" ;
+		error_log($sql);
 		include('./db.php');
 		if($conn->query($sql)){
 			$_SESSION["message"] = 'Gratulacje! Nastąpiła poprawna rejestracja użytkownika proszę zalogować się do systemu'; 
 			// $_SESSION["name"] = $login;
 			// $_SESSION["logged"] = "YES";
 			// $name = $login;
-			// header("Location: ./"); /* Redirect to main page */
-			// exit();
+			error_log($_SESSION["message"]);
+			header("Location: ./"); /* Redirect to main page */
+			exit();
 		}else{
 			//echo 'Błąd bazy danych'.mysqli_error($conn);
 			$_SESSION["message"] = 'Wyspąpił błąd podczas rejestracji - użytkonik istniejw w bazie danych';  
-		}
+		} 
+	}else if ($_SERVER["REQUEST_METHOD"] == "POST"){
+		$_SESSION["message"] = 'O co chodzi?'; 
 	}	
 ?>
 
@@ -52,7 +57,7 @@
 	<div class="register">
 		<!-- dodac obsluge wpisania do bazy danych -->
 
-		<form action="<?php echo htmlspecialchars($_SERVER[" PHP_SELF "]);?>" method="post" onsubmit="return checkRegulamin(this)">
+		<form name="registrationForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" onsubmit="return checkRegulamin(this)">
 			<fieldset>
 				<legend>Proszę wypełnić formularz rejestracyjny</legend>
 				<div class="register_row">
