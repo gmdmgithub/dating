@@ -49,6 +49,7 @@
 					<div class="search_row">
 						<div class="search_column_1">
 							<label>Mieszka</label>
+							<br>
 							<select name="live" class="date">
 								<option value="">Bez znaczenia</option>
 								<option value="1">Miasto</option>

@@ -253,6 +253,7 @@ nav {
 
   /* footer */
 .footer {
+	clear: both;
   background-color: grey;
   text-align: center;
   color: white;

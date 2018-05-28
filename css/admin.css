@@ -1,0 +1,78 @@
+.admin_panel {
+    min-height: 70vh;
+}
+.admin_box{
+    box-sizing: border-box;
+    width: 48%;
+    margin: 0 1%;
+    height: 200px;
+    border: 1px solid black;
+    border-radius: 5px;
+    float: left;
+}
+.all{
+    width: 50%;
+    box-sizing: border-box;
+    border-bottom: 1px solid black;
+}
+.admin_box .title{
+    box-sizing: border-box;
+    border-radius: 5px 5px 0 0;
+    line-height: 78px;
+    margin: 0;
+    height: 78px;
+    text-align: center;
+    /* border: 1px solid black; */
+    font-size: 40px;
+    font-weight: bolder;
+    color: blue;
+    background-color: rgb(244, 255, 205);
+    opacity: 0.4;
+
+}
+
+.admin_box .all, .admin_box .confirm {
+    width: 50%;
+    float: left;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    box-sizing: border-box;
+  
+    
+    /* border: 1px solid black; */
+}
+.admin_box .confirm{
+    background-color:rgba(136, 233, 25, 0.8);
+    border-radius: 0 0 5px 0;
+}
+
+.space{
+    height: 20px;
+    clear: both;
+}
+.confirm a{
+    text-decoration: none;
+    color: brown;
+    font-weight: bold;
+}
+.meetings .mcontent{
+    height: 120px;
+    line-height: 120px;
+    padding: 0;
+    border: none;
+}
+
+.admin_box .name{
+    clear: both;
+    padding-left: 30px;
+    text-align: left;
+    font-size: 20px;
+    color: rgb(224, 233, 235);
+    background-color: rgba(75, 4, 43, 0.692);
+}
+.admin_box .value{
+    font-weight: bold;
+    font-size: 30px;
+
+}

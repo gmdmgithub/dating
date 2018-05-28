@@ -6,35 +6,112 @@
         //zrob coś jak przyjdzie post
     }
 ?>
+    <link rel="stylesheet" href="css/admin.css">
 	</head>
 
 	<body>
-		<?php include('./navi.php'); ?>
+		<?php include('./navi.php'); 
 
-		<?php if($admin == 'ADMIN'){?>
-		<div class="title">
+		if($admin == 'ADMIN'){
+            include('./db.php');
+            $a_users = 0;
+            $n_users = 0;
+            
+            //zapytania o użytkowników
+            $sql = "SELECT count(*) A_USERS FROM uzytkownicy";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) { 
+                $row = $result->fetch_assoc();
+                $a_users =  $row['A_USERS'];
+            }   
+            $sql = "SELECT count(*) N_USERS FROM uzytkownicy WHERE STATUS = 'T' "; 
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) { 
+                $row = $result->fetch_assoc();
+                $n_users =  $row['N_USERS'];
+            }
+
+            $a_proposals = 0;
+            $n_proposals = 0;
+            //zapytania o ogłoszenia
+            $sql = "SELECT count(*) A_PROP FROM ogloszenia";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) { 
+                $row = $result->fetch_assoc();
+                $a_proposals =  $row['A_PROP'];
+            }
+            $sql = "SELECT count(*) N_PROP FROM ogloszenia WHERE STATUS = 'N'";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) { 
+                $row = $result->fetch_assoc();
+                $n_proposals =  $row['N_PROP'];
+            }   
+            
+            $a_questions = 0;
+            $n_questions = 0;
+            //zapytania o pytania
+            $sql = "SELECT count(*) A_QUEST FROM pytania";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) { 
+                $row = $result->fetch_assoc();
+                $a_questions =  $row['A_QUEST'];
+            }
+            $sql = "SELECT count(*) N_QUEST FROM pytania WHERE STATUS = 'N'";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) { 
+                $row = $result->fetch_assoc();
+                $n_questions =  $row['N_QUEST'];
+            }
+            
+            
+            $a_invitations = 0;
+            //zapytania o zaproszenia
+            $sql = "SELECT count(*) A_INV FROM prosba_kontaktu";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) { 
+                $row = $result->fetch_assoc();
+                $a_invitations =  $row['A_INV'];
+            }
+        ?>
+        
+        <div class="title">
 			<h1>Strona administratora</h1>
 		</div>
-        <div class="main_content">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-				Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-				irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-				cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-				Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-				irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-				cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-			<h2>Pytanie od Pani Krysi z Wrocławia:</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-				Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-				irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-				cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-				Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-				irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-				cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        
+        <div class="admin_panel">
+            <div class="admin_box users">
+                <p class="title">Użytkownicy</p>
+                <div class="all name">Wszyscy</div>
+                <div class="all value"><?php echo $a_users; ?></div>
+                <div class="confirm name"> Do potwierdzenia</div>
+                <div id="u_value" class="confirm value"><a href="#"><?php echo $n_users; ?></a> </div>
+            </div>
+            <div class="admin_box proposals">
+                <p class="title">Ogłoszenia</p>
+                <div class="all name">Wszystkich ogłoszeń</div>
+                <div class="all value"><?php echo $a_proposals; ?></div>
+                <div class="confirm name"> Do potwierdzenia</div>
+                <div id="p_value" class="confirm value"> <a href="#"><?php echo $n_proposals; ?></a></div>
+            </div>
+            <div class="space"></div>
+            <div class="admin_box questions">
+                <p class="title">Pytania</p>
+                <div class="all name">Wszystkich</div>
+                <div class="all value"><?php echo $a_questions; ?></div>
+                <div class="confirm name"> Do odpowiedzi</div>
+                <div id="q_value" class="confirm value"> <a href="#"><?php echo $n_questions; ?></a></div>
+            </div>
 
-		</div>
+            <div class="admin_box meetings">
+                <p class="title">Zaproszeń</p>
+                <div class="all mcontent name">Całkowita liczba</div>
+                <div id="m_value" class="all mcontent value"><?php echo $a_invitations; ?></div>
+            </div>
+        
+        </div>
+        
+        
+
 		<?php }else{ 
             $_SESSION["message"] = "Wykryto próbę naruszenia zasad bezpieczeństwa, 
                       incydent zostanie zgłoszony administratowori wraz z IP i innymi danymi niezbędnymi do twojej identyfikacji!";        
