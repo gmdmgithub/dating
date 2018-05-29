@@ -8,14 +8,14 @@
     $handle = fopen(".env", "r");
     if ($handle) {
         while (($line = fgets($handle)) !== false) {
-            $line = str_replace("\n", "", $line);
-            if(strpos($line,'DB_USERNAME') !== false )
+            $line = trim(str_replace("\n", "", $line));
+            if(strpos($line,'DB_USERNAME') === 0 )
                 $db_username = getValueFromDotenv($line);
-            if(strpos($line,'DB_PASSWORD') !== false )
+            if(strpos($line,'DB_PASSWORD') === 0 )
                 $db_passward = getValueFromDotenv($line);
-            if(strpos($line,'DB_HOST') !== false )
+            if(strpos($line,'DB_HOST') === 0 )
                 $db_host = getValueFromDotenv($line);
-            if(strpos($line,'DB_DATABASE') !== false )
+            if(strpos($line,'DB_DATABASE') === 0 )
                 $db_database = getValueFromDotenv($line);
         }
         fclose($handle);
@@ -24,6 +24,7 @@
     } 
 
     function getValueFromDotenv($envLine){
+        //echo $envLine."<br>";
         return trim(substr($envLine,stripos($envLine,"=")+1));
     }
 ?>
