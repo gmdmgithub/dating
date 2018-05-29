@@ -1,10 +1,11 @@
 <?php
 	//database connection
-	if(!$conn){		
-		DEFINE('DB_USERNAME', 'root');
-		DEFINE('DB_PASSWORD', 'root');
-		DEFINE('DB_HOST', 'localhost');
-		DEFINE('DB_DATABASE', 'dating_db');
+	if(!$conn){
+		include('./read-env.php');	
+		DEFINE('DB_USERNAME', $db_username );
+		DEFINE('DB_PASSWORD', $db_passward);
+		DEFINE('DB_HOST', $db_host);
+		DEFINE('DB_DATABASE', $db_database);
 
 		$conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
 

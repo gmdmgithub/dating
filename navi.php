@@ -24,12 +24,6 @@
 						'title'		=>	'Ogłoszenia',
 						'access'	=>	'REGISTRED'
 					),
-					// array(
-					// 	'name'		=> 'questions',
-					// 	'site'		=> 'questions.php',
-					// 	'title'		=>	'Pytania',
-					// 	'access'	=>	'ADMIN'
-					// ),
 					array(
 						'name'		=> 'invitations',
 						'site'		=> 'invitations.php',

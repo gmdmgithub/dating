@@ -3,3 +3,4 @@ tmp
 
 # files to ignore
 specyfikacja.docx
+.env
