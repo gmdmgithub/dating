@@ -35,10 +35,10 @@
 			<!-- dodac obsluge wpisania do bazy danych -->
 			<form action="#" method="post">
 				<fieldset>
-					<legend>Proszę wypełnić formularz rejestracyjny</legend>
+					<legend>Proszę wypełnić formularz kontaktowy</legend>
 
 					<div class="register_row">
-						<label for="subject">Temat twojej wiadomości</label>
+						<label for="subject">Temat o który pytasz</label>
 						<input type="text" id="subject" name="subject" placeholder="Wpisz temat w jakim piszesz..">
 					</div>
 					<div class="register_row">

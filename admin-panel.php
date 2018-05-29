@@ -84,7 +84,7 @@
                 <div class="all name">Wszyscy</div>
                 <div class="all value"><?php echo $a_users; ?></div>
                 <div class="confirm name"> Do potwierdzenia</div>
-                <div id="u_value" class="confirm value"><a href="#"><?php echo $n_users; ?></a> </div>
+                <div id="u_value" class="confirm value"><a href="./usersManagement.php"><?php echo $n_users; ?></a> </div>
             </div>
             <div class="admin_box proposals">
                 <p class="title">Ogłoszenia</p>
@@ -116,6 +116,7 @@
             $_SESSION["message"] = "Wykryto próbę naruszenia zasad bezpieczeństwa, 
                       incydent zostanie zgłoszony administratowori wraz z IP i innymi danymi niezbędnymi do twojej identyfikacji!";        
             header("Location: ./");
+            
 		 } ?>
 
 

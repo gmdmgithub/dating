@@ -76,3 +76,63 @@
     font-size: 30px;
 
 }
+
+.user-row{
+    max-height: 30px;
+    clear: both;
+    width: 90%;
+    margin: 0 auto;
+    line-height: 30px;
+    font-size: 15px;
+}
+
+.user-row >div{
+    box-sizing: border-box;
+
+    border: 1px solid black;
+    width: 10%;
+    font-size: 12px;
+    /* display: inline-block; */
+    float: left;
+    padding-left: 4px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.header >div{
+    color: blue;
+    font-weight: bold;
+    background-color: cornflowerblue;
+}
+.user-row > .u-desc{
+    width: 20%;
+}
+.user-row > .u-status{
+    width: 8%;
+}
+.user-row > .u-name{
+    width: 15%;
+}
+.user-row > .u-email{
+    width: 15%;
+}
+.user-row > .u-reg-date{
+    width: 12%;
+}
+.u-wrapper{
+    min-height: 70vh;
+    margin-bottom: 40px;
+}
+.d-activate{
+
+    width: 90%;
+    height: 90%;
+    background-color: rgb(10, 117, 46);
+    border-radius: 4px;
+    text-align: center;
+}
+.d-activate >a{
+    text-decoration: none;
+    color: coral;
+    padding: 10px 20px;
+}
