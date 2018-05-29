@@ -19,7 +19,7 @@
 
     <div class="results_list">
         <?php
-		$sql = "SELECT * FROM OGLOSZENIA WHERE USR_ID='$userId' AND STATUS <>'D'";
+		$sql = "SELECT * FROM ogloszenia WHERE USR_ID='$userId' AND STATUS <>'D'";
 		
 		$result = $conn->query($sql);
 		

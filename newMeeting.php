@@ -11,7 +11,7 @@
     $nick = '';
 
     if ($_SERVER["REQUEST_METHOD"] == "GET" && $ogloszenieId > 0){
-        $sql = "SELECT * FROM OGLOSZENIA WHERE USR_ID !='$userId' AND ID='$ogloszenieId' "; //dodać jeszcze status ogłoszenia
+        $sql = "SELECT * FROM ogloszenia WHERE USR_ID !='$userId' AND ID='$ogloszenieId' "; //dodać jeszcze status ogłoszenia
         include('./db.php');
         $result = $conn->query($sql);
 		

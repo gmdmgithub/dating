@@ -20,7 +20,7 @@
     
 
     if ($_SERVER["REQUEST_METHOD"] == "GET" && $proposalId > 0){
-        $sql = "SELECT * FROM OGLOSZENIA WHERE USR_ID='$userId' AND ID='$proposalId' ";
+        $sql = "SELECT * FROM ogloszenia WHERE USR_ID='$userId' AND ID='$proposalId' ";
         include('./db.php');
         $result = $conn->query($sql);
 		
