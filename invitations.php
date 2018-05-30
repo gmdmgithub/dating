@@ -125,7 +125,7 @@
 				<!-- end of resultsbox -->
 			<?php }
 		} else {
-			echo "<h2>Wygląda na to, że nikomu nie wysłałeś jeszcze zaporoszenia do spotkania/h2>";
+			echo "<h2>Wygląda na to, że nikomu nie wysłałeś jeszcze zaporoszenia do spotkania</h2>";
 		}
 	 ?>
 </div>
