@@ -63,7 +63,7 @@ if ($result->num_rows > 0) {
     <div class="u-email"><?php echo $row['EMAIL']?></div>
     <div class="u-login"><?php echo $row['LOGIN']?></div>
     <div class="u-reg-date"><?php echo $row['DATA_REJESTRACJI']?></div>
-    <div class="u-desc"><?php echo $row['OPIS']?></div>
+    <div title ="<?php echo $row['OPIS']?>" class="u-desc"><?php echo $row['OPIS']?></div>
     <div class="u-status"><?php echo ($row['STATUS'] != 'A')?'Nieaktywny':'Aktywny';?></div>
     
     <div>
