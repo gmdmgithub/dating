@@ -17,6 +17,13 @@
         //echo $sql;
         $result = $conn->query($sql);
     }
+    if(!empty($_GET['id']) && !empty($_GET['deactivate'])){
+        //echo 'Dodać akcję aktywowania używtkonika';
+        $id = $_GET['id'];
+        $sql = " UPDATE uzytkownicy  SET STATUS = 'D' where ID ='$id' ";
+        //echo $sql;
+        $result = $conn->query($sql);
+    }
 ?>
     <link rel="stylesheet" href="css/admin.css">
 </head>
@@ -34,8 +41,7 @@
     <div class="u-reg-date">Data rejestracji</div>
     <div class="u-desc">Opis</div>
     <div class="u-status">Status</div>
-    <div class="a-activate">Aktywuj</div>
-    <div class="a-desactivate">Deaktywuj</div>
+    <div class="a-action">Akcja</div>
 </div>
 
 <?php
@@ -58,15 +64,26 @@ if ($result->num_rows > 0) {
     <div class="u-login"><?php echo $row['LOGIN']?></div>
     <div class="u-reg-date"><?php echo $row['DATA_REJESTRACJI']?></div>
     <div class="u-desc"><?php echo $row['OPIS']?></div>
-    <div class="u-status"><?php echo $row['STATUS']?></div>
+    <div class="u-status"><?php echo ($row['STATUS'] != 'A')?'Nieaktywny':'Aktywny';?></div>
+    
     <div>
-        <div class="d-activate">
-            <a href="./usersManagement.php?activate=y&id=<?php echo $row['ID'];?>" >Aktywuj</a>
-        </div>
+        <?php
+        $u_status = "Aktywny";
+        if($row['STATUS'] != 'A'){
+            $u_status = "Nieaktywny";
+            ?>
+            <div class="a-activate">
+                <a href="./usersManagement.php?activate=y&id=<?php echo $row['ID'];?>" >Aktywuj</a>
+            </div>
+        <?php 
+        } else { ?>
+            <div class="d-activate">
+                <a href="./usersManagement.php?deactivate=y&id=<?php echo $row['ID'];?>" >Deaktywuj</a>
+            </div>
+        <?php 
+        } ?>
     </div>
-    <div class="a-desactivate">Deaktywuj</div>
 </div>
-
 
    <?php }
 }
