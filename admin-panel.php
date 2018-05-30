@@ -24,7 +24,7 @@
                 $row = $result->fetch_assoc();
                 $a_users =  $row['A_USERS'];
             }   
-            $sql = "SELECT count(*) N_USERS FROM uzytkownicy WHERE STATUS = 'T' "; 
+            $sql = "SELECT count(*) N_USERS FROM uzytkownicy WHERE STATUS <> 'A' "; 
             $result = $conn->query($sql);
             if ($result->num_rows > 0) { 
                 $row = $result->fetch_assoc();
