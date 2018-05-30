@@ -18,7 +18,7 @@
 		$opis = checkPostData('opis');
 		
 		echo 'Registration posted';
-		$sql = "INSERT INTO uzytkownicy set imie='$imie', nazwisko='$nazwisko', email ='$email', plec='$plsec',
+		$sql = "INSERT INTO uzytkownicy set imie='$imie', nazwisko='$nazwisko', email ='$email', plec='$plec',
 			login='$login', haslo='$haslo', wielkosc_miasta='$wielkosc_miasta', rok_urodzenia='$rok_urodzenia',opis='$opis'" ;
 		error_log($sql);
 		include('./db.php');
