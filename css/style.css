@@ -462,3 +462,37 @@ fieldset {
 .gd_info{
 	display: none;
 }
+
+/* text */
+.scroll-left {
+	height: 20px;	
+	overflow: hidden;
+	position: relative;
+	margin: 0;
+	padding: 0;
+
+}
+.scroll-left p {
+	position: absolute;
+	color: #130d5b;
+	font-weight: bold;
+	font-size: 16px;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	/* line-height: 50px; */
+	text-align: center;
+	/* Starting position */	
+	transform:translateX(100%);
+	/* Apply animation to this element */	
+	animation: scroll-left 30s linear infinite;
+}
+/* Move it (define the animation) */
+@keyframes scroll-left {
+	0% { 
+		transform: translateX(100%); 		
+	}
+	100% { 
+	transform: translateX(-100%); 
+ 	}
+}

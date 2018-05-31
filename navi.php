@@ -83,3 +83,7 @@
 		</div>
 		<?php include('./login.php');?>
 	</nav>
+
+<div class="scroll-left">
+	<p>UWAGA Portal powstał jako zaliecznie przedmiotu <q>Aplikacje serwerowe</q>, nie zawiera prawdziwych danych - przynajminej nie teraz ;-)</p>
+</div>
