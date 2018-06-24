@@ -496,3 +496,18 @@ fieldset {
 	transform: translateX(-100%); 
  	}
 }
+
+@media (max-width:760px){
+	
+	.menu a{
+		clear: both;	
+		display:block;
+		align-content: center;
+	}
+	center img{
+		width: 90%;
+	}
+	search_box {
+		clear: both;
+	}
+}
